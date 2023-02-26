@@ -1,9 +1,21 @@
-#include "Integrator.hpp"
+/*
+This file defines the main methods for all of the integrators that we will be using.*/
+#include "integrator.hpp"
+#include "vec.hpp"
+#include "matrix.hpp"
 
-void ForwardEuler::setParam(int p){
-    param = p;
-}
+using namespace std;
 
+/*
+This is a test function used for the sanity test*/
 int ForwardEuler::getParam(){
     return param;
+}
+
+/*
+This function defines the forward euler step.
+*/
+vec ForwardEuler::step(vec x, float t, vec function(vec)){
+    vec mul = vec_scalar_mul_double(function(x), t);
+    return vec_add_vec(mul,x);
 }
