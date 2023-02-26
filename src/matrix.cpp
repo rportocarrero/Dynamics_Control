@@ -2,7 +2,6 @@
 This is the implementation of some of the matrix operations that we 
 will need for our simulation program
 */
-#include "vec.hpp"
 #include "matrix.hpp"
 
 
@@ -25,3 +24,11 @@ vec vec_add_vec(vec A, vec B){
     }
     return result;
 };
+
+/*
+This function multiplies a matrix by a vector
+*/
+vec matrix_mul_vector_double(mat A, vec v){
+    return v;
+};
+

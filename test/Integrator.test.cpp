@@ -1,5 +1,5 @@
 #include "integrator.hpp"
-#include "vec.hpp"
+#include "matrix.hpp"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -7,13 +7,6 @@ using namespace std;
 /*
 Sanity test with a positive value*/
 TEST(IntegratorTest, PosSanity) { EXPECT_EQ(0, 0); }
-
-/*
-This function tests the constructor*/
-TEST(IntegratorTest, ForwardEulerConstructor) {
-  ForwardEuler I = ForwardEuler();
-  ASSERT_EQ(I.getParam(), 0);
-}
 
 /*
 This is a placeholder function for the below test

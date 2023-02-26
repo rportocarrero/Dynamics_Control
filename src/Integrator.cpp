@@ -1,16 +1,9 @@
 /*
 This file defines the main methods for all of the integrators that we will be using.*/
 #include "integrator.hpp"
-#include "vec.hpp"
 #include "matrix.hpp"
 
 using namespace std;
-
-/*
-This is a test function used for the sanity test*/
-int ForwardEuler::getParam(){
-    return param;
-}
 
 /*
 This function defines the forward euler step.

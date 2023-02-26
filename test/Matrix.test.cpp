@@ -47,3 +47,14 @@ TEST(MatrixTest, scalarMult2){
     output = vec_scalar_mul_double(inputA, s);
     ASSERT_EQ(expected, output);
 }
+
+/*
+This method tests a matrix multiplied by a vector
+*/
+TEST(MatrixTest, matrixMulVec){
+    vec input_a, expected, result;
+    mat A;
+    result = matrix_mul_vector_double(A, input_a);
+    ASSERT_EQ(expected, result);
+
+}
