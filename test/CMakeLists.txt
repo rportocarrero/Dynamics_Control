@@ -10,8 +10,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(test_main test_main.cpp Integrator.test.cpp Simulation.test.cpp StateSpace.test.cpp Matrix.test.cpp)
-target_link_libraries(test_main GTest::gtest_main integrator matrix)
+add_executable(test_main test_main.cpp Integrator.test.cpp Simulation.test.cpp StateSpace.test.cpp)
+target_link_libraries(test_main GTest::gtest_main integrator stateSpace simulation)
 
 
 include(GoogleTest)

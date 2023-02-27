@@ -2,8 +2,11 @@
 These files test the state-space implementation*/
 #include "gtest/gtest.h"
 #include "stateSpace.hpp"
-#include "matrix.hpp"
 #include "integrator.hpp"
+#include <Eigen/Dense>
+
+using namespace Eigen;
+using namespace std;
 
 /*
 sanity check*/
@@ -14,12 +17,12 @@ TEST(StateSpaceTest, PosSanity) {
 /*
 This tests a basic initializaton of the state-space model
 */
-TEST(SateSpaceTest, Initialize){
-    mat A = {{1.0,0.0},{0.0,1.0}};
-    mat B = {{0.0},{1.0}};
-    mat C = {{1.0,0.0}};
-    mat D = {{0.0,0.0}};
-    vec x_0 = {1.0,1.0};
+TEST(StateSpaceTest, Initialize){
+    MatrixXd A{{1.0,0.0},{0.0,1.0}};
+    MatrixXd B{{0.0,1.0}};
+    MatrixXd C{{1.0,0.0}};
+    MatrixXd D{{0.0,0.0}};
+    VectorXd x_0{{1.0},{1.0}};
     Integrator I = ForwardEuler();
     StateSpace model = StateSpace(A,B,C,D,x_0,I);
     ASSERT_EQ(model.A, A);
@@ -32,20 +35,22 @@ TEST(SateSpaceTest, Initialize){
 /*
 Test state-space model with integrator step
 */
-TEST(StatesSpaceTest, StateSpaceEuler){
-    // preconditions
-    mat A = {{1.0,0.0},{0.0,1.0}};
-    mat B = {{1.0},{1.0}};
-    mat C = {{1.0,1.0}};
-    mat D = {{0.0,0.0}};
-    vec x_0 = {1.0,1.0};
-    vec x_expected = {0.0, 0.0};
+TEST(StateSpaceTest, StateSpaceEuler){
+
+    MatrixXd A{{1.0,0.0},{0.0,1.0}};
+    MatrixXd B{{1.0,0.0},{0.0,1.0}};
+    MatrixXd C{{1.0,0.0},{0.0,1.0}};
+    MatrixXd D{{1.0,0.0},{0.0,1.0}};
+    VectorXd x_0{{1.0},{1.0}};
+    VectorXd u{{1.0},{1.0}};
+    VectorXd x_expected{{2.0},{2.0}};
+    double t = 0.1;
     Integrator I = ForwardEuler();
-    StateSpace model = StateSpace(A,B,C,D,x_0,I);
+    StateSpace SSmodel = StateSpace(A,B,C,D,x_0,I);
 
     //step
-    model.step();
+    VectorXd output = SSmodel.step(u, t);
 
     //results
-    ASSERT_EQ(model.x, x_expected);
+    ASSERT_EQ(output, x_expected);
 }

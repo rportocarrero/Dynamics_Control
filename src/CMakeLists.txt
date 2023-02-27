@@ -1,2 +1,3 @@
 add_library(integrator integrator.cpp)
-add_library(matrix Matrix.cpp)
+add_library(stateSpace stateSpace.cpp)
+add_library(simulation Simulation.cpp)

@@ -3,16 +3,17 @@ This header file defines the different types of integrators that the simulations
 */
 #ifndef H_Integrator
 #define H_Integrator
-#include "matrix.hpp"
+#include <Eigen/Dense>
 
 using namespace std;
+using namespace Eigen;
 
 /*
 Main integrator superclass
 */
 class Integrator{
   public:
-    vec step(vec x, float t, vec functtion(vec));
+    VectorXd step(VectorXd x, VectorXd x_dot, double t);
 };
 
 /*
@@ -20,7 +21,7 @@ function defenition for the basic forward euler*/
 class ForwardEuler: public Integrator{
   public:
     int getParam();
-    vec step(vec x, float t, vec function(vec));
+    VectorXd step(VectorXd x, VectorXd x_dot, double t);
 };
 
 #endif
